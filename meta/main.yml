@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: telegram
+  author: iasensio
+  description: Install a telegram script that can be used to send notifications.
+  company: MyMac, LLC
+  license: MIT
+  min_ansible_version: "2.4"
+
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+
+  galaxy_tags:
+    - system
+    - docker
+    - bullseye
+    - observability

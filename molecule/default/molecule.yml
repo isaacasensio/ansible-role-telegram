@@ -1,0 +1,25 @@
+---
+role_name_check: 1
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+platforms:
+  - name: instance
+    image: "geerlingguy/docker-debian11-ansible:latest"
+    pre_build_image: true
+
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+
+verifier:
+  name: testinfra
+
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .

@@ -1,0 +1,27 @@
+---
+- name: Update apt cache.
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 600
+  changed_when: false
+
+- name: Install curl
+  become: true
+  ansible.builtin.apt:
+    name: curl
+    state: present
+
+- name: Create directory for script
+  become: true
+  ansible.builtin.file:
+    path: "{{ telegram_host_path }}"
+    state: directory
+    mode: 0755
+
+- name: Copy the script to the target
+  become: true
+  ansible.builtin.template:
+    src: telegram_message.sh.j2
+    dest: "{{ telegram_host_path }}/telegram_message.sh"
+    mode: 0755
